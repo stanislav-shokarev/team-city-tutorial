@@ -1,0 +1,21 @@
+// Front-end entry point, compiled by Gulp to assets/css/main.css.
+//
+// Order matters: tokens and reset first, then layout, then components, then
+// the WordPress core classes last so they can win where they need to. Each
+// partial pulls in the abstracts it uses itself, so nothing here is a hidden
+// global.
+
+@use 'base/theme';
+@use 'base/reset';
+@use 'base/typography';
+
+@use 'layout/layout';
+@use 'layout/header';
+@use 'layout/footer';
+
+@use 'components/button';
+@use 'components/entry';
+@use 'components/widget';
+@use 'components/comments';
+
+@use 'wordpress/core';

@@ -1,0 +1,32 @@
+@use '../abstracts/variables' as v;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding-inline: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: v.$radius-sm;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  &--primary {
+    color: var(--accent-contrast);
+    background-color: var(--accent);
+    border-color: var(--accent);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--accent) 85%, black);
+    }
+  }
+}

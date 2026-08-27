@@ -1,0 +1,27 @@
+// Block editor entry point, compiled to assets/css/editor.css and registered
+// with add_editor_style() in inc/setup.php.
+//
+// This deliberately loads only the typography and WordPress core classes —
+// the editor supplies its own canvas chrome, so pulling in the site header,
+// footer and layout grid here would fight with it.
+
+@use 'base/theme';
+@use 'base/typography';
+@use 'wordpress/core';
+
+// The editor canvas is the content column, so mirror the front-end measure.
+.editor-styles-wrapper {
+  font-family: inherit;
+
+  .wp-block {
+    max-width: 720px;
+  }
+
+  .wp-block[data-align='wide'] {
+    max-width: 1100px;
+  }
+
+  .wp-block[data-align='full'] {
+    max-width: none;
+  }
+}

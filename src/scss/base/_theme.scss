@@ -1,0 +1,32 @@
+// Light is the base palette; dark overrides only the tokens that change.
+// There is no JS toggle — the theme follows the visitor's OS setting, and
+// the values mirror the palette declared in theme.json so the block editor
+// and the front end agree.
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f4f5f7;
+  --surface: #ffffff;
+  --border: #e2e5ea;
+  --text: #14161a;
+  --text-muted: #5b6472;
+  --accent: #cf4647;
+  --accent-contrast: #ffffff;
+  --code-bg: #f4f5f7;
+  --shadow: 0 1px 2px rgb(20 22 26 / 6%), 0 8px 24px rgb(20 22 26 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --bg-alt: #15181e;
+    --surface: #171b22;
+    --border: #272d38;
+    --text: #e8eaed;
+    --text-muted: #9aa4b2;
+    --accent: #ff6b6c;
+    --accent-contrast: #14161a;
+    --code-bg: #10131a;
+    --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 32%);
+  }
+}

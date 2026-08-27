@@ -1,0 +1,20 @@
+/*
+Theme Name: Gulpress
+Theme URI: https://github.com/your-username/gulpress
+Author: Stanislav Shokarev
+Author URI: https://github.com/your-username
+Description: A modern classic WordPress theme with a Gulp 5 build pipeline — Sass, PostCSS, esbuild and image optimisation. Compiled assets live in assets/, not here.
+Version: 1.0.0
+Requires at least: 6.6
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gulpress
+Tags: custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
+
+This file exists because WordPress requires it to detect and describe the theme.
+The actual stylesheet is built by Gulp to assets/css/main.css and enqueued from
+inc/enqueue.php — do not add rules here, they would be overwritten conceptually
+and are not part of the build.
+*/

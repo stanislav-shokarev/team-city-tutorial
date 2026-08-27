@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# The workflow only reads the repository; nothing here needs write access.
+permissions:
+  contents: read
+
+jobs:
+  assets:
+    name: Build assets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Fail if the build produced nothing
+        run: test -s assets/css/main.css && test -s assets/js/main.js
+
+      - name: Audit production dependencies
+        # The theme ships no runtime npm dependencies; this guards the
+        # toolchain. See the security note in README.md for the known
+        # dev-only browser-sync advisory.
+        run: npm audit --audit-level=high --omit=dev
+
+      - name: Package theme
+        run: npm run package
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gulpress-theme
+          path: gulpress.zip
+          if-no-files-found: error
+
+  php:
+    name: PHP lint and standards
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: cs2pr, phpcs, wp-coding-standards/wpcs
+
+      - name: Syntax check
+        run: find . -path ./node_modules -prune -o -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
+
+      - name: WordPress Coding Standards
+        run: phpcs -q --standard=WordPress --extensions=php --ignore=node_modules,assets --report=checkstyle . | cs2pr

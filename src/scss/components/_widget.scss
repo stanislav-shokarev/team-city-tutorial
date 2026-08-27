@@ -1,0 +1,70 @@
+@use '../abstracts/variables' as v;
+
+.widget-area {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.widget {
+  padding: 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: v.$radius-md;
+
+  &__title {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  ul {
+    padding: 0;
+    margin-block-start: 0.75rem;
+    list-style: none;
+  }
+
+  li + li {
+    margin-block-start: 0.5rem;
+  }
+
+  a {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  .children,
+  .sub-menu {
+    padding-inline-start: 1rem;
+    margin-block-start: 0.5rem;
+  }
+}
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-block-start: 0.75rem;
+
+  &__field {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: v.$radius-sm;
+
+    &:focus-visible {
+      border-color: var(--accent);
+    }
+  }
+
+  &__submit {
+    flex: 0 0 auto;
+    min-height: auto;
+    padding-inline: 1rem;
+  }
+}

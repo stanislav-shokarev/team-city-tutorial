@@ -1,0 +1,4 @@
+# Drives Autoprefixer. Check the result with: npx browserslist
+> 0.5%
+last 2 versions
+not dead

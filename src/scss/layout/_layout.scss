@@ -1,0 +1,47 @@
+@use '../abstracts/mixins' as m;
+
+// Content column plus optional sidebar. The sidebar collapses below it on
+// narrow screens; layout--full drops it entirely for pages and 404s.
+.layout {
+  display: grid;
+  gap: 3rem;
+  padding-block: 3rem;
+
+  @include m.mq('lg') {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+  }
+
+  &--full {
+    @include m.mq('lg') {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  &__content {
+    min-width: 0; // Lets long code blocks scroll instead of stretching the grid.
+  }
+
+  &__aside {
+    min-width: 0;
+  }
+}
+
+.page-header {
+  padding-block-end: 1.5rem;
+  margin-block-end: 2rem;
+  border-block-end: 1px solid var(--border);
+
+  &__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: -0.02em;
+  }
+
+  &__query {
+    color: var(--accent);
+  }
+
+  &__description {
+    margin-block-start: 0.75rem;
+    color: var(--text-muted);
+  }
+}
